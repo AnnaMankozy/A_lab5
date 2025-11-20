@@ -33,6 +33,12 @@ def main():
     sizes = [10, 100, 1000, 5000, 10000]
     sequence_types = ['random', 'ascending', 'descending']
 
+    type_names = {
+        'random': 'Випадкова',
+        'ascending': 'Зростаюча',
+        'descending': 'Спадна'
+    }
+
     results = []
 
     for n in sizes:
@@ -54,9 +60,16 @@ def main():
                 'assignments': assignments
             })
 
-    print(f"{'N':>6} {'Type':>10} {'Time (s)':>10} {'Comparisons':>12} {'Assignments':>12}")
-    for r in results:
-        print(f"{r['size']:>6} {r['type']:>10} {r['time_sec']:>10.6f} {r['comparisons']:>12} {r['assignments']:>12}")
+    print(f"{'N':>6} {'Тип':>12} {'Час (с)':>10} {'Порівняння':>12} {'Присвоєння':>12}")
+    print("-" * 70)
+
+
+    for i, r in enumerate(results):
+        print(f"{r['size']:>6} {type_names[r['type']]:>12} {r['time_sec']:>10.6f} "
+              f"{r['comparisons']:>12} {r['assignments']:>12}")
+
+        if (i + 1) % 3 == 0:
+            print("-" * 70)
 
 if __name__ == "__main__":
     main()
